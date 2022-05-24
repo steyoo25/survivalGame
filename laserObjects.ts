@@ -4,6 +4,7 @@ class Laser {
     m : number; // m: [0,1)
     b : number;
     type : number; // type: [0,1]
+    speed : number;
 
     /*
     type 1: y = mx+b
@@ -12,11 +13,12 @@ class Laser {
     type 4: x = -my+b
     */
 
-    constructor(m : number, b : number, type : number) {
+    constructor(m : number, b : number, type : number, speed : number) {
         //set up properties
         this.m = m;
         this.b = b;
         this.type = type
+        this.speed = speed
     }
 
     draw() : void {
