@@ -16,19 +16,19 @@ function draw() {
 
 function keyPressed() {
 
-  if (keyIsDown(RIGHT_ARROW)) {
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown("a")) {
     x += 10;
   }
 
-  if (keyIsDown(LEFT_ARROW)) {
+  if (keyIsDown(LEFT_ARROW) || keyPressed("d")) {
     x -= 10;
   }
 
-  if (keyIsDown(UP_ARROW)) {
+  if (keyIsDown(UP_ARROW) || keyIsDown("w")) {
     y -= 10;
   }
 
-  if (keyIsDown(DOWN_ARROW)) {
+  if (keyIsDown(DOWN_ARROW) || keyIsDown("s")) {
     y += 10;
   }
 
