@@ -3,7 +3,7 @@ class Laser {
     //List all properties:
     m : number; // m: [0,1)
     b : number;
-    type : number;
+    type : number; // type: [0,1]
 
     /*
     type 1: y = mx+b
@@ -25,5 +25,10 @@ class Laser {
 
     update() : void {
         
+    }
+
+    findLength() : number {
+        //too lazy rn ngl
+        return 
     }
 }
