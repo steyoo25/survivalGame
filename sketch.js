@@ -10,26 +10,25 @@ function draw() {
    //image(bg, 0, 0)
    background(225)
    keyPressed()
-   clear()
    ellipse(x, y, 50, 50);
 }
 
 function keyPressed() {
 
-  if (keyIsDown(RIGHT_ARROW) || keyIsDown("a")) {
-    x += 10;
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    x += 5;
   }
 
-  if (keyIsDown(LEFT_ARROW) || keyPressed("d")) {
-    x -= 10;
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    x -= 5;
   }
 
-  if (keyIsDown(UP_ARROW) || keyIsDown("w")) {
-    y -= 10;
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+    y -= 5;
   }
 
-  if (keyIsDown(DOWN_ARROW) || keyIsDown("s")) {
-    y += 10;
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+    y += 5;
   }
 
 
