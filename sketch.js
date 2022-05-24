@@ -1,14 +1,36 @@
-x=0
-y=0
+let x=300
+let y=300
 function setup() {
     createCanvas(600, 600)
-    bg = loadImage('') //background
-    char = ellipse(x+200, y+250, 50, 50);
-
+    //bg = loadImage('') //background
+   
 }
 
 function draw() {
    //image(bg, 0, 0)
    background(225)
-   char.draw()
+   keyPressed()
+   clear()
+   ellipse(x, y, 50, 50);
+}
+
+function keyPressed() {
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    x += 10;
+  }
+
+  if (keyIsDown(LEFT_ARROW)) {
+    x -= 10;
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    y -= 10;
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    y += 10;
+  }
+
+
 }
