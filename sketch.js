@@ -40,7 +40,10 @@ function draw() {
         }
       } // INSTRUCTIONS
       if (MENU === 3) {
-
+        
+        if (keyIsDown(77)) {
+            MENU = 0
+          }
       } 
     }
       
@@ -90,6 +93,4 @@ function keyPressed() {
         if (y < 575)
             y += 5;
     }
-    
-
 }
