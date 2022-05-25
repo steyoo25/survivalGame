@@ -52,16 +52,16 @@ function draw() {
 
 function mouseClicked() {
     if (MENU == 0) {
-        if (200 < mouseX < 400) {
-        if (mouseY > 100 && mouseY < 175) {
-            MENU = 1
-        }
-        if (mouseY > 250 && mouseY < 325) {
-            MENU = 2
-        }
-        if (mouseY > 400 && mouseY < 475) {
-            MENU = 3
-        }
+        if (mouseX > 200 && mouseX < 400) {
+            if (mouseY > 100 && mouseY < 175) {
+                MENU = 1
+            }
+            if (mouseY > 250 && mouseY < 325) {
+                MENU = 2
+            }
+            if (mouseY > 400 && mouseY < 475) {
+                MENU = 3
+            }
         }
     }
 }
