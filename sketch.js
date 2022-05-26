@@ -40,7 +40,11 @@ function draw() {
         }
       } // INSTRUCTIONS
       if (MENU === 3) {
-        
+        background(225)
+        textSize(25)
+        text("Objective: Avoid the obstacles, such as lasers, \nto survive longer than your opponents.", 25, 100)
+        text("Use WASD or arrow keys to move your character.", 25, 200)
+        text("Press M to return to menu",25,150)   
         if (keyIsDown(77)) {
             MENU = 0
           }
