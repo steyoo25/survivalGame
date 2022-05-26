@@ -29,8 +29,12 @@ class Laser {
         
     }
 
-    findLength() : number {
-        //too lazy rn ngl
+    // findLength() : number {
+    //     //too lazy rn ngl
+    //     return 
+    // }
+
+    findXpos() : number {
         return 
     }
 }
