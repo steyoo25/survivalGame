@@ -26,7 +26,7 @@ let playerMovement = {
     up: false,
     down: false,
     left: false,
-    right: false
+    right: false,
 };
 
 function keyDown(e){
