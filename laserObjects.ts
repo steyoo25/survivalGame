@@ -1,3 +1,6 @@
+let canvas = document.querySelector as HTMLCanvasElement
+let ctx = canvas.getContext("2d")
+
 class Laser {
     
     //List all properties:
@@ -7,7 +10,7 @@ class Laser {
     speed : number;
 
     /*
-    type 1: y = mx+b
+    type 1: y-150 = m(x-150)+b
     type 2: y = -mx+b
     type 3: x = my+b
     type 4: x = -my+b
@@ -22,7 +25,9 @@ class Laser {
     }
 
     draw() : void {
+        ctx.beginPath
 
+        ctx.closePath
     }
 
     update() : void {
@@ -34,7 +39,8 @@ class Laser {
     //     return 
     // }
 
-    findXpos() : number {
+    findPosToGraph() : Array<Array<Number>> {
+        
         return 
     }
 }
