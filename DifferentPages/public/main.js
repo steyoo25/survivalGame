@@ -14,6 +14,7 @@ socket.on('state', (gameState)=>{
     }
 })
 
+
 function draw(player){
     ctx.beginPath();
     ctx.fillStyle = player.color;
