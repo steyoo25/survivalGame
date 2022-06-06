@@ -44,6 +44,8 @@ io.on('connection', socket=>{
             player.y -= player.yVel;
         if (playerMovement.down && player.y < playerMovement.height - player.radius)
             player.y += player.yVel;
+    
+    socket.on()
     })
 
 });
