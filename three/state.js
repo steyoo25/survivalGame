@@ -1,10 +1,9 @@
 let gameState = {
     players: {},
-    obstacles: []
 }
 
 class Player {
-    constructor(username, x,y){
+    constructor(username, x,y, spec){
         this.username = username;
         this.x = x;
         this.y = y;
@@ -17,6 +16,7 @@ class Player {
         this.shield = false;
         this.duration = 3000;
         this.cooldown = 5000;
+        this.spec = spec;
     }
 
     // draw() {
@@ -28,7 +28,7 @@ class Player {
     // }
 
     checkSuper() {
-        if (!this.usingSuper && this.superLeft > 0)
+        if (!this.usingSuper && this.superLeft > 0 && !this.spec)
             return true;
         return false;
     }
@@ -36,8 +36,8 @@ class Player {
 }
 
 class Max extends Player { // superspeed character
-    constructor(username, x,y){
-        super(username, x,y);
+    constructor(username, x,y, spec){
+        super(username, x,y, spec);
         this.color = 'yellow';
     }
 
@@ -64,8 +64,8 @@ class Max extends Player { // superspeed character
 }
 
 class IceWizard extends Player{ // slows everyone down
-    constructor(username, x,y){
-        super(username, x,y);
+    constructor(username, x,y, spec){
+        super(username, x,y, spec);
         this.color = 'cyan';
         // make sure to change this.cooldown down later, or this will be too op. 
     }
@@ -103,8 +103,8 @@ class IceWizard extends Player{ // slows everyone down
 }
 
 class Leon extends Player { // invisbility
-    constructor(username, x,y){
-        super(username, x,y);
+    constructor(username, x,y, spec){
+        super(username, x,y, spec);
         this.color = 'purple';
         this.invis = false;
     }
@@ -134,8 +134,8 @@ class Leon extends Player { // invisbility
 }
 
 class Rosa extends Player {
-    constructor(username, x,y){
-        super(username, x,y);
+    constructor(username, x,y, spec){
+        super(username, x,y, spec);
         this.color = 'orange';
     }
 
@@ -158,16 +158,4 @@ class Rosa extends Player {
     }
 }
 
-class Obstacle {
-    constructor(x,y){
-        this.x = x;
-        this.y = y;
-        this.width = 100;
-        this.height = 10;
-        this.color = 'brown';
-        this.xVel = 0.3;
-        this.yVel = 0;
-    }
-}
-
-module.exports = {gameState, Player, Max, IceWizard, Leon, Rosa, Obstacle};
+module.exports = {gameState, Max, IceWizard, Leon, Rosa};

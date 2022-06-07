@@ -15,10 +15,6 @@ socket.on('state', (gameState)=>{
     for (let player in gameState.players){
         drawPlayer(gameState.players[player]);
     } // draw function for each Player object
-
-    for (let obstacle in gameState.obstacles){
-        drawObstacle(gameState.obstacles[obstacle]);
-    }
 })
 
 function drawPlayer(player){
@@ -27,32 +23,12 @@ function drawPlayer(player){
     ctx.arc(player.x, player.y, player.radius, 0, Math.PI*2);
     ctx.fill();
 
-    if (!player.invis) // check if the player is invisible
-        ctx.fillStyle = 'white';
-    else 
-        ctx.fillStyle = 'rgba(100,100,100,0)';
+    if (!player.invis) ctx.fillStyle = 'white'; // check if the player is invisible
+    else ctx.fillStyle = 'rgba(100,100,100,0)';
     
     ctx.font = '20px times';
-    let username = player.username;
-    ctx.fillText(username, player.x-username.length*4.5, player.y-20);
+    ctx.fillText(player.username, player.x-player.username.length*4.5, player.y-20);
     ctx.closePath();
-}
-
-function drawObstacle(obstacle){
-    if (obstacle.x>canvas.width)
-        delete obstacle;
-    else if (obstacle.x<0)
-        delete obstacle;
-    else if (obstacle.y>canvas.height)
-        delete obstacle;
-    else if (obstacle.y<0)
-        delete obstacle;
-    else {
-        ctx.beginPath();
-        ctx.fillStyle = obstacle.color;
-        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-        ctx.closePath();
-    }
 }
 
 let playerMovement = {

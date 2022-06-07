@@ -1,4 +1,3 @@
-const socket = io();
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 
@@ -58,5 +57,4 @@ function handleArrowLeftArrowRight(e){
 }
 
 document.addEventListener('keydown', handleArrowLeftArrowRight);
-
 setInterval(draw, 1000/60);

@@ -1,5 +1,3 @@
-const socket = io();
-
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 
@@ -47,8 +45,8 @@ document.addEventListener('click', (e)=>{
         if (!username){
             alert('Please enter a valid username. ');
         }
-        else if (username.length < 3 || username.length > 10){
-            alert('Your username has to be 3-10 characters.');
+        else if (username.length < 3 || username.length > 15){
+            alert('Your username has to be 3-15 characters.');
         }  else {
             sessionStorage.setItem('username', username);
             window.location.href = './characters.html';

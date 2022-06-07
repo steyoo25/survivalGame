@@ -9,68 +9,54 @@ app.use(express.static(path.join(__dirname, 'public')));
 const server = http.createServer(app);
 const io = socketio(server);
 
-let {gameState, Player, Max, IceWizard, Leon, Rosa, Obstacle} = require('./state.js'); 
+let {gameState, Max, IceWizard, Leon, Rosa} = require('./state.js'); 
+let gameStarted = false;
+let playerCount = 0
 
 io.on('connection', socket => {
     console.log('A connection');
     
     socket.on('newPlayer', (data)=>{
+        let spectating = false;
+        if (gameStarted) spectating = true;
         switch(data.character){
-            case 'Max':
-                gameState.players[socket.id] = new Max (data.username, Math.random()*800, Math.random()*500);
-                break;
-            case 'IceWizard':
-                gameState.players[socket.id] = new IceWizard (data.username, Math.random()*800, Math.random()*500);
-                break;
-            case 'Leon':
-                gameState.players[socket.id] = new Leon (data.username, Math.random()*800, Math.random()*500);
-                break;
-            case 'Rosa':
-                gameState.players[socket.id] = new Rosa (data.username, Math.random()*800, Math.random()*500);
-                break;
+            case 'Max': gameState.players[socket.id] = new Max (data.username, Math.random()*800, Math.random()*500, spectating); break;
+            case 'IceWizard': gameState.players[socket.id] = new IceWizard (data.username, Math.random()*800, Math.random()*500, spectating); break;
+            case 'Leon': gameState.players[socket.id] = new Leon (data.username, Math.random()*800, Math.random()*500, spectating); break;
+            case 'Rosa': gameState.players[socket.id] = new Rosa (data.username, Math.random()*800, Math.random()*500, spectating); break;
         }
+        playerCount++;
     });
-
-    setInterval(()=>{
-        gameState.obstacles.push(new Obstacle (-100, Math.random()*500));
-    }, 5000);
     
-    setInterval(()=>{
-        for (let i in gameState.obstacles){
-            let obstacle = gameState.obstacles[i];
-            obstacle.x += obstacle.xVel;
-            obstacle.y += obstacle.yVel; 
-        }
-    }, 10)
-
     socket.on('disconnect', ()=>{
         delete gameState.players[socket.id]; // handles when a player leaves
     })
 
     socket.on('playerMovement', (playerMovement)=>{
         let player = gameState.players[socket.id];
-        if (playerMovement.right && player.x+player.radius < 800)
-            player.x += player.xVel;
-        if (playerMovement.left && player.x-player.radius > 0)
-            player.x -= player.xVel;
-        if (playerMovement.up && player.y-player.radius > 0)
-            player.y -= player.yVel;
-        if (playerMovement.down && player.y+player.radius < 500)
-            player.y += player.yVel;
+        if (!player.spec){
+            if (playerMovement.right && player.x+player.radius < 800) player.x += player.xVel;
+            if (playerMovement.left && player.x-player.radius > 0) player.x -= player.xVel;
+            if (playerMovement.up && player.y-player.radius > 0) player.y -= player.yVel;
+            if (playerMovement.down && player.y+player.radius < 500) player.y += player.yVel;
+        }
     });
 
     socket.on('superUsed', ()=>{
         let player = gameState.players[socket.id];
         let canUse = player.checkSuper();
-        if (canUse){
-            player.useSuper();
-        }
+        if (canUse) player.useSuper();
     });
 });
 
 setInterval(()=>{
-    io.emit('state', gameState); 
+    if (playerCount==4) startGame(); // if there's at least four, start the game!
 }, 1000/60);
+
+function startGame(){
+    io.emit('state', gameState);
+    gameStarted = true;
+}
 
 server.listen((PORT), (e)=>{
     if (e) throw error;
