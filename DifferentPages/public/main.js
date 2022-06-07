@@ -1,3 +1,5 @@
+const e = require("express");
+
 const socket = io();
 
 canvas = document.querySelector('canvas');
@@ -46,6 +48,17 @@ function handleKeyup(e){
         case 'w': playerMovement.up = false; break;
         case 's': playerMovement.down = false; break;
     }
+}
+
+let scoreboard = {
+    
+}
+
+function scoreboard() {
+    if (keyIsDown(TAB)) {
+        
+    }
+
 }
 
 document.addEventListener('keydown', handleKeydown);
