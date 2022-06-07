@@ -1,4 +1,4 @@
-let canvas = document.querySelector as HTMLCanvasElement
+let canvas = document.querySelector('canvas') as HTMLCanvasElement
 let ctx = canvas.getContext("2d")
 
 class Laser {
@@ -25,9 +25,8 @@ class Laser {
     }
 
     draw() : void {
-        ctx.beginPath
-
-        ctx.closePath
+        ctx.beginPath();
+        ctx.closePath();
     }
 
     update() : void {
