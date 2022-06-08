@@ -5,6 +5,8 @@ ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 500;
 
+socket.emit('setupMode', (sessionStorage.getItem('mode'))); // got which mode it is from modes.html, sending it to setup mode to the server
+
 socket.emit('newPlayer', {
     username: sessionStorage.getItem('username'),
     character: sessionStorage.getItem('character')

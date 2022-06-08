@@ -49,7 +49,7 @@ document.addEventListener('click', (e)=>{
             alert('Your username has to be 3-15 characters.');
         }  else {
             sessionStorage.setItem('username', username);
-            window.location.href = './characters.html';
+            window.location.href = './modes.html';
         }
     }
 });
