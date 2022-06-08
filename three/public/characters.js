@@ -3,7 +3,7 @@ let ctx = canvas.getContext('2d');
 
 let index = 0;
 
-characters = ['Max', 'IceWizard', 'Leon', 'Rosa']
+characters = ['Max', 'IceWizard', 'Leon', 'Giant']
 currentCharacter = characters[0];
 
 canvas.width = 800;
@@ -25,9 +25,9 @@ function draw(){
             ctx.fillStyle = 'purple';
             text = 'Leon';
             break;
-        case 'Rosa':
+        case 'Giant':
             ctx.fillStyle = 'orange';
-            text = 'Rosa';
+            text = 'Giant';
             break;
     }
     ctx.beginPath();        

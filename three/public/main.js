@@ -10,6 +10,20 @@ socket.emit('newPlayer', {
     character: sessionStorage.getItem('character')
 });
 
+socket.on('gameInProgress', ()=>{
+    alert('Game is full, please try again later!');
+    window.location.href = './index.html';
+});
+
+socket.on('waitingForPlayers', ()=>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.font = '50px sherif';
+    ctx.fillStyle = 'white';
+    ctx.fillText('Waiting for players...', canvas.width/2-200, canvas.height/2);
+    ctx.closePath();
+});
+
 socket.on('state', (gameState)=>{
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let player in gameState.players){
@@ -21,8 +35,7 @@ function drawPlayer(player){
     ctx.beginPath();
     ctx.fillStyle = player.color;
     ctx.arc(player.x, player.y, player.radius, 0, Math.PI*2);
-    ctx.fill();
-
+    if (!player.spec) ctx.fill();
     if (!player.invis) ctx.fillStyle = 'white'; // check if the player is invisible
     else ctx.fillStyle = 'rgba(100,100,100,0)';
     

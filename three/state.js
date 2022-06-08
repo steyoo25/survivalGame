@@ -3,7 +3,7 @@ let gameState = {
 }
 
 class Player {
-    constructor(username, x,y, spec){
+    constructor(username, x,y){
         this.username = username;
         this.x = x;
         this.y = y;
@@ -13,10 +13,8 @@ class Player {
         this.usingSuper = false;
         this.superLeft = 3;
         this.immune = false;
-        this.shield = false;
         this.duration = 3000;
         this.cooldown = 5000;
-        this.spec = spec;
     }
 
     // draw() {
@@ -28,7 +26,7 @@ class Player {
     // }
 
     checkSuper() {
-        if (!this.usingSuper && this.superLeft > 0 && !this.spec)
+        if (!this.usingSuper && this.superLeft > 0)
             return true;
         return false;
     }
@@ -36,8 +34,8 @@ class Player {
 }
 
 class Max extends Player { // superspeed character
-    constructor(username, x,y, spec){
-        super(username, x,y, spec);
+    constructor(username, x,y){
+        super(username, x,y);
         this.color = 'yellow';
     }
 
@@ -64,8 +62,8 @@ class Max extends Player { // superspeed character
 }
 
 class IceWizard extends Player{ // slows everyone down
-    constructor(username, x,y, spec){
-        super(username, x,y, spec);
+    constructor(username, x,y){
+        super(username, x,y);
         this.color = 'cyan';
         // make sure to change this.cooldown down later, or this will be too op. 
     }
@@ -103,8 +101,8 @@ class IceWizard extends Player{ // slows everyone down
 }
 
 class Leon extends Player { // invisbility
-    constructor(username, x,y, spec){
-        super(username, x,y, spec);
+    constructor(username, x,y){
+        super(username, x,y);
         this.color = 'purple';
         this.invis = false;
     }
@@ -133,9 +131,9 @@ class Leon extends Player { // invisbility
     }
 }
 
-class Rosa extends Player {
-    constructor(username, x,y, spec){
-        super(username, x,y, spec);
+class Giant extends Player {
+    constructor(username, x,y){
+        super(username, x,y);
         this.color = 'orange';
     }
 
@@ -145,12 +143,15 @@ class Rosa extends Player {
         let originalColor = this.color;
         this.color = 'white';
         setTimeout(() => {
-            this.color = 'red';
-        }, 500);
-        this.shield = true; // having shield makes it immune to obstacles
-        setTimeout(()=>{
             this.color = originalColor;
-            this.shield = false;
+        }, 500);
+        this.radius = 55; // becomes big
+        this.xVel = 2.5;
+        this.yVel = 2.5; // becomes a little slower
+        setTimeout(()=>{
+            this.radius = 20;
+            this.xVel = 4;
+            this.yVel = 4;
             setTimeout(() => {
                 this.usingSuper = false;
             }, this.cooldown);
@@ -158,4 +159,4 @@ class Rosa extends Player {
     }
 }
 
-module.exports = {gameState, Max, IceWizard, Leon, Rosa};
+module.exports = {gameState, Max, IceWizard, Leon, Giant};
