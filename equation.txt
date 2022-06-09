@@ -1,0 +1,10 @@
+if sqrt((x1-x2)^2+y1-y2)^2)<=2r
+    players are touching
+
+x1 is the tagger's x coordinate
+x2 is the player's x coordinate
+
+y1 is the tagger's y coordinate
+y2 is the player's y coordinate
+
+r is the radius, making 2r the diameter

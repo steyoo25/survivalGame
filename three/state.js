@@ -1,6 +1,5 @@
 let gameState = {
     players: {},
-    obstacles: []
 }
 
 class Player {
@@ -14,23 +13,22 @@ class Player {
         this.usingSuper = false;
         this.superLeft = 3;
         this.immune = false;
-        this.shield = false;
         this.duration = 3000;
         this.cooldown = 5000;
+        this.touching = false;
     }
-
-    // draw() {
-    //     ctx.beginPath();
-    //     ctx.fillStyle = this.color;
-    //     ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
-    //     ctx.fill();
-    //     ctx.closePath();
-    // }
 
     checkSuper() {
         if (!this.usingSuper && this.superLeft > 0)
             return true;
         return false;
+    }
+
+    checkTouching(Player) {
+        if (Math.sqrt((this.x-Player.x)**2+(this.y-Player.y)^2)<=2*this.radius) {
+            return true
+        }
+        return false
     }
 
 }
@@ -133,7 +131,7 @@ class Leon extends Player { // invisbility
     }
 }
 
-class Rosa extends Player {
+class Giant extends Player {
     constructor(username, x,y){
         super(username, x,y);
         this.color = 'orange';
@@ -145,12 +143,15 @@ class Rosa extends Player {
         let originalColor = this.color;
         this.color = 'white';
         setTimeout(() => {
-            this.color = 'red';
-        }, 500);
-        this.shield = true; // having shield makes it immune to obstacles
-        setTimeout(()=>{
             this.color = originalColor;
-            this.shield = false;
+        }, 500);
+        this.radius = 55; // becomes big
+        this.xVel = 2.5;
+        this.yVel = 2.5; // becomes a little slower
+        setTimeout(()=>{
+            this.radius = 20;
+            this.xVel = 4;
+            this.yVel = 4;
             setTimeout(() => {
                 this.usingSuper = false;
             }, this.cooldown);
@@ -158,16 +159,4 @@ class Rosa extends Player {
     }
 }
 
-class Obstacle {
-    constructor(x,y){
-        this.x = x;
-        this.y = y;
-        this.width = 100;
-        this.height = 10;
-        this.color = 'brown';
-        this.xVel = 0.3;
-        this.yVel = 0;
-    }
-}
-
-module.exports = {gameState, Player, Max, IceWizard, Leon, Rosa, Obstacle};
+module.exports = {gameState, Max, IceWizard, Leon, Giant};
