@@ -15,7 +15,6 @@ class Player {
         this.immune = false;
         this.duration = 3000;
         this.cooldown = 5000;
-        this.touching = false;
     }
 
     checkSuper() {
