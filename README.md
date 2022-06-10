@@ -11,3 +11,7 @@ First run server.js in the terminal and go to "localhost:3000" on the browser.
 
 All players except the host go to "a.b.c.d:3000" in the browser to join the game. 
 Enjoy the game. 
+
+---------------------------
+Project description:
+A multiplayer tag game for 4 players, with many fun modes, including normal, superpower, elimination, and infection. Each round, "IT" is selected randomly and has the ability to "tag" other players on the game board. The last person to be tagged loses when time is up (for elimination and infection modes, this works a little differently). This is TAG 2.0, a better and more intense version of multiplayer tag!

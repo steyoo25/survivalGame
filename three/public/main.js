@@ -69,6 +69,10 @@ function handleKeydown(e){
         case 'd': playerMovement.right = true; break;
         case 'w': playerMovement.up = true; break;
         case 's': playerMovement.down = true; break;
+        case 'LEFT_ARROW': playerMovement.left = true; break;
+        case 'RIGHT_ARROW': playerMovement.right = true; break;
+        case 'UP_ARROW': playerMovement.up = true; break;
+        case 'DOWN_ARROW': playerMovement.down = true; break;
     }
     if (e.key===' '){
         socket.emit('superUsed');
@@ -81,6 +85,10 @@ function handleKeyup(e){
         case 'd': playerMovement.right = false; break;
         case 'w': playerMovement.up = false; break;
         case 's': playerMovement.down = false; break;
+        case 'LEFT_ARROW': playerMovement.left = false; break;
+        case 'RIGHT_ARROW': playerMovement.right = false; break;
+        case 'UP_ARROW': playerMovement.up = false; break;
+        case 'DOWN_ARROW': playerMovement.down = false; break;
     }
 }
 
