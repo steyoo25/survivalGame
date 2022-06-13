@@ -5,7 +5,8 @@ ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 500;
 
-socket.emit('setupMode', (sessionStorage.getItem('mode'))); // got which mode it is from modes.html, sending it to setup mode to the server
+let currentMode = sessionStorage.getItem('mode');
+socket.emit('setupMode', (currentMode)); // got which mode it is from modes.html, sending it to setup mode to the server
 
 socket.emit('newPlayer', {
     username: sessionStorage.getItem('username'),
@@ -35,15 +36,32 @@ socket.on('state', (gameState)=>{
 
 function drawPlayer(player){
     ctx.beginPath();
+    
     ctx.fillStyle = player.color;
     ctx.arc(player.x, player.y, player.radius, 0, Math.PI*2);
-    if (!player.spec) ctx.fill();
+    ctx.fill();    
+
+    if (!player.invis && player.tagger){ // marks the tagger with a red square
+        ctx.fillStyle='red';
+        ctx.fillRect(player.x-player.radius/2, player.y-player.radius/2, player.radius-5, player.radius-5);
+    } 
+
+    // handles username
     if (!player.invis) ctx.fillStyle = 'white'; // check if the player is invisible
     else ctx.fillStyle = 'rgba(100,100,100,0)';
     
     ctx.font = '20px times';
-    ctx.fillText(player.username, player.x-player.username.length*4.5, player.y-20);
+    ctx.fillText(player.username, player.x-player.username.length*4.5, player.y-23);
+    
     ctx.closePath();
+}
+
+function collisionDetection() {
+
+}
+
+function scoreboard() {
+    
 }
 
 let playerMovement = {
