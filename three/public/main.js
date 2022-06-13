@@ -46,6 +46,14 @@ function drawPlayer(player){
     ctx.closePath();
 }
 
+function collisionDetection() {
+
+}
+
+function scoreboard() {
+    
+}
+
 let playerMovement = {
     right: false,
     left: false,
