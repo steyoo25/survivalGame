@@ -16,6 +16,7 @@ class Player {
         this.duration = 3000;
         this.cooldown = 5000;
         this.touching = false;
+        this.tagger = false;
     }
 
     checkSuper() {

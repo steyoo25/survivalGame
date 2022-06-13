@@ -20,14 +20,10 @@ io.on('connection', socket => {
     console.log('New user joined ' + socket.id);
     
     socket.on('newMode', ()=>{
-        if (howManyJoined()===0){
-            socket.emit('gameInProgress');
-        }
+        if (howManyJoined()===0) socket.emit('gameInProgress');
         else {
             playerCount++;
-            if (howManyJoined()===-1){
-                socket.emit('waitingForPlayers');
-            }
+            if (howManyJoined()===-1) socket.emit('waitingForPlayers');
             else if (howManyJoined()===0) {
                 io.emit('beginModeSelection');
                 playerCount = 0;
@@ -40,18 +36,15 @@ io.on('connection', socket => {
     })
 
     socket.on('newPlayer', (data)=>{
-        if (howManyJoined()===0){
-            socket.emit('gameInProgress');
-        }
+        if (howManyJoined()===0) socket.emit('gameInProgress');
         else {
             playerCount++;
             playersInGame.push(socket.id);
             switch (gameMode){
                 case 'superpower': startSuperpowerMode(socket, data.username, data.character); break;
             }
-            if (howManyJoined()===-1){
-                socket.emit('waitingForPlayers');
-            }
+            if (howManyJoined()===0) selectTagger();
+            else socket.emit('waitingForPlayers');
         }
     })
     
@@ -78,12 +71,6 @@ io.on('connection', socket => {
     });
 });
 
-setInterval(()=>{
-    let playerNums = howManyJoined();
-    if (playerNums===0) io.emit('state', gameState); // right number of players
-    else if (playerNums===-1) io.emit('waitingForPlayers'); // needs more players to start
-}, 1000/60);
-
 function howManyJoined(){
     if (playerCount == MAXPLAYERS) return 0 // 0 indicates full
     else if (playerCount < MAXPLAYERS) return -1; // -1 means it needs more
@@ -97,6 +84,19 @@ function startSuperpowerMode(socket, username, character){
         case 'Giant': gameState.players[socket.id] = new Giant (username, Math.random()*700, Math.random()*400); break;
     }
 }
+
+function selectTagger() {
+    let i = Math.floor(Math.random()*playerCount);
+    gameState.players[playersInGame[i]].tagger = true;
+}
+
+setInterval(()=>{
+    let playerNums = howManyJoined();
+    if (playerNums===0){
+        io.emit('state', gameState);
+    }  // right number of players
+    else if (playerNums===-1) io.emit('waitingForPlayers'); // needs more players to start
+}, 1000/60);
 
 server.listen((PORT), (e)=>{
     if (e) throw error;
