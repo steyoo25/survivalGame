@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <!-- <style>
+        body{
+            background-color: #39FF14;
+        }
+        #canvas-container{
+            width: 800px;
+            height: 500px;
+            margin: auto;
+            text-align:center;
+            border-width: 10px;
+            border: 3px solid red;
+            border-radius: 10px;
+        }
+        canvas{
+            display: inline;
+            background-color: black;
+            border-radius: 10px;
+        }
+    </style> -->
+    <style>
+        body{
+            background-color: black;
+            overflow:hidden;
+        }
+        section{
+            display:block;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            margin-top: 200px;
+            text-align: center;
+            align-content: center;
+            color: white;
+        }
+        .modeButton{
+            display: block;
+            background-color: coral;
+            margin-left:  50%;
+            transform: translateX(-50%);
+            padding-right: 30px;
+            padding-left: 30px;
+            font-size: 30px;
+            margin-top: 5px;
+        }
+        .modeButton:hover{
+            cursor:crosshair;
+            color:yellow;
+        }
+        .enterButton{
+            display: block;
+            margin-left:  50%;
+            transform: translateX(-50%);
+            background-color: #39FF14;
+            color: darkred;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .enterButton:hover{
+            background-color: #04d9ff;
+        }
+        .joinButton{
+            display: block;
+            margin-left:  50%;
+            transform: translateX(-50%);
+            background-color: orangered;
+            color: #04d9ff;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 30px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .joinButton:hover{
+            background-color: black;
+        }
+        .characterButton{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 50px;
+            padding-left: 50px;
+            margin: 3px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: 3px solid white;
+            color: black;
+        }
+        .characterButton:hover{
+            color:red;
+        }
+        .characterImage{
+            width: 15%;
+            height: 15%;
+            display: block;
+            margin-bottom: 35px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+        .inst{
+            display: block;
+            color: #39FF14;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 35px;
+        }
+        canvas{
+            display: none;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <section></section>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

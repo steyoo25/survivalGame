@@ -1,25 +1,16 @@
 {
-  "name": "survivalgame",
+  "name": "four",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/steyoo25/survivalGame.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/steyoo25/survivalGame/issues"
-  },
-  "homepage": "https://github.com/steyoo25/survivalGame#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "socket.io": "^4.5.1",
-    "typescript": "^4.7.2"
+    "socket.io": "^4.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
