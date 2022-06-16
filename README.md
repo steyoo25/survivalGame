@@ -11,6 +11,8 @@ Other players using the same wifi can join the same server through the ip addres
 
 All players except the host go to "a.b.c.d:3000" in the browser to join the game. Enjoy the game.
 
+-----
+
 Project description: A multiplayer tag game for 4 players, with fun modes, including classic and superpower. 
 Each round, "IT" is selected randomly and has the ability to "tag" other players on the game board. 
 The last person to be tagged loses when time is up (for elimination and infection modes, this works a little differently). 
